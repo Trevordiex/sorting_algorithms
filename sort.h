@@ -34,7 +34,7 @@ void selection_sort(int *array, size_t size);
 
 /** 3-quick_sort.c*/
 void quick_sort(int *array, size_t size);
-int lomuto_partition(int *array, int low, int high);
+int lomuto_partition(int *array, int low, int high, size_t size);
 void swap(int array[], int i, int j);
 void quicksort_helper(int array[], int low, int high, size_t size);
 #endif

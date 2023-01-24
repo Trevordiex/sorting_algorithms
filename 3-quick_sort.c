@@ -5,26 +5,30 @@
 * @array: array of int
 * @low: lower boundary of operation
 * @high: upper bound of operation
+* @size: the size of the array used for printing array
 *
 * Description: lomuto partioning scheme for quick sort algorithm
 * Return: index of the pivot element after swapping
 */
-int lomuto_partition(int *array, int low, int high)
+int lomuto_partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
 	int j;
 	int i = low - 1;
 
-	for (j = low; j < high; j++)
+	for (j = low; j <= high; j++)
 	{
 		if (pivot >= array[j])
 		{
-		i++;
-		swap(array, i, j);
+			i++;
+			if (i != j)
+			{
+				swap(array, i, j);
+				print_array(array, size);
+			}
 		}
 	}
-	swap(array, i + 1, high);
-	return (i + 1);
+	return (i);
 }
 
 /**
@@ -61,8 +65,7 @@ void quicksort_helper(int array[], int low, int high, size_t size)
 
 	if (low < high)
 	{
-		partition = lomuto_partition(array, low, high);
-		print_array(array, size);
+		partition = lomuto_partition(array, low, high, size);
 		quicksort_helper(array, low, partition - 1, size);
 		quicksort_helper(array, partition + 1, high, size);
 	}
